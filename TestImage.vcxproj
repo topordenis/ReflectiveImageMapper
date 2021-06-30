@@ -160,21 +160,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="connection\endpoint.h" />
-    <ClInclude Include="connection\inc.h" />
-    <ClInclude Include="connection\meta.h" />
-    <ClInclude Include="connection\ssl_manager.h" />
+    <ClInclude Include="BinaryPacket.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Handler.h" />
     <ClInclude Include="img.h" />
     <ClInclude Include="includes.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="PacketType.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="connection\connection.cpp" />
-    <ClCompile Include="connection\endpoint.cpp" />
-    <ClCompile Include="connection\on_socket.cpp" />
-    <ClCompile Include="connection\ssl_manager.cpp" />
+    <ClCompile Include="BinaryPacket.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="OnBinary.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libcrypto.lib" />

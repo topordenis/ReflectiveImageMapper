@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Socket">
+      <UniqueIdentifier>{2851e735-4c1b-47c6-b920-09dd1fda19c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{04c48d5b-c1ad-4416-90a4-b9ed0fa47f92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -24,37 +30,43 @@
     <ClInclude Include="img.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="connection\endpoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="connection\inc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="connection\meta.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="connection\ssl_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryPacket.h">
+      <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketType.h">
+      <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="connection\connection.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BinaryPacket.cpp">
+      <Filter>Socket</Filter>
     </ClCompile>
-    <ClCompile Include="connection\endpoint.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Handler.cpp">
+      <Filter>Socket</Filter>
     </ClCompile>
-    <ClCompile Include="connection\on_socket.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="OnBinary.cpp">
+      <Filter>Socket</Filter>
     </ClCompile>
-    <ClCompile Include="connection\ssl_manager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MessageHandler.cpp">
+      <Filter>Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

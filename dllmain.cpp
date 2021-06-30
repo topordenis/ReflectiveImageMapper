@@ -11,16 +11,6 @@
 
 unsigned long WINAPI initialize ( void * instance ) {
 
-	auto buffer = image.data ( );
-
-	PIMAGE_NT_HEADERS pOldNtHeader = reinterpret_cast< IMAGE_NT_HEADERS * >( buffer + reinterpret_cast< IMAGE_DOS_HEADER * >( buffer )->e_lfanew );
-	PIMAGE_OPTIONAL_HEADER pOldOptHeader = &pOldNtHeader->OptionalHeader;
-	PIMAGE_FILE_HEADER pOldFileHeader = &pOldNtHeader->FileHeader;
-
-	void* pTargetBase  = std::malloc ( pOldOptHeader->SizeOfImage );
-
-	std::cout << "Allocated 0x" << std::hex << pOldOptHeader->SizeOfImage << " bytes in target process at 0x" << std::hex << ( uintptr_t ) pTargetBase << std::endl;
-	
 
 
 	MessageBoxA ( NULL, "Dll propriu zis.", "dll injected", MB_OK );
