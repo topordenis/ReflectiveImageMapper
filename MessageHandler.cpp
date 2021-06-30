@@ -16,7 +16,7 @@ void socket_handler::on_fail ( client * c, connection_hdl hdl ) {
 
 }
 // Define a callback to handle incoming messages
-void socket_handler::message_handle ( client * c, websocketpp::connection_hdl hdl, message_ptr msg ) {
+void socket_handler::message_handle ( websocketpp::connection_hdl, client::message_ptr msg ) {
     /*std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message (" << msg->get_payload().size() << "): " << msg->get_payload()
               << std::endl;

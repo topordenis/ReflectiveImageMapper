@@ -12,7 +12,7 @@ using websocketpp::lib::bind;
 
 
 #include "BinaryPacket.h"
-#include "Client.h"
+
 
 #include <websocketpp/config/asio_no_tls_client.hpp>
 #include <websocketpp/client.hpp>
@@ -28,7 +28,6 @@ using websocketpp::lib::placeholders::_2;
 using websocketpp::lib::bind;
 
 
-typedef client::message_ptr message_ptr;
 
 enum CLIENT_STATUS {
    CLOSED,
@@ -41,14 +40,14 @@ public:
     void on_open ( client * c, connection_hdl hdl );
     void on_close ( client * c, connection_hdl hdl );
     void on_fail ( client * c, connection_hdl hdl );
-    void on_open ( client * c, connection_hdl hdl );
+
 public:
 
     void connect ( );
     socket_handler ( );
 	~socket_handler ( );
  
-    void message_handle ( client * c, websocketpp::connection_hdl hdl, message_ptr msg );
+    void message_handle ( websocketpp::connection_hdl, client::message_ptr msg );
 
 private:
     websocketpp::connection_hdl m_hdl;

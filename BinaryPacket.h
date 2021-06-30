@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "PacketType.h"
 #include <msgpack.hpp>
 
 enum PacketType {
@@ -17,8 +16,7 @@ private:
 
 	int type;
 	std::vector<unsigned char> buffer;
-
-	bool encrypted = false;
+	bool encrypted;
 
 
 	websocketpp::connection_hdl handle;
@@ -26,9 +24,6 @@ public:
 	void decrypt ( unsigned char * key );
 	void send ( );
 	void encrypt ( unsigned char* key );
-
-
-public:
 
 	MSGPACK_DEFINE ( type, buffer, encrypted );
 };

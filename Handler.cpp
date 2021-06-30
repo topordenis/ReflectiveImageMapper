@@ -3,19 +3,7 @@
 
 #include "Handler.h"
 
-void on_message ( client * c, websocketpp::connection_hdl hdl, message_ptr msg ) {
-    std::cout << "on_message called with hdl: " << hdl.lock ( ).get ( )
-        << " and message: " << msg->get_payload ( )
-        << std::endl;
 
-
-    websocketpp::lib::error_code ec;
-
-    c->send ( hdl, msg->get_payload ( ), msg->get_opcode ( ), ec );
-    if ( ec ) {
-        std::cout << "Echo failed because: " << ec.message ( ) << std::endl;
-    }
-}
 void socket_handler::connect ( ) {
     websocketpp::lib::error_code ec;
 
@@ -30,8 +18,31 @@ void socket_handler::connect ( ) {
 
         con->set_open_handler ( websocketpp::lib::bind (
             &socket_handler::on_open,
-            this
+            this,
+            &m_endpoint,
+            websocketpp::lib::placeholders::_1
         ) );
+        con->set_fail_handler ( websocketpp::lib::bind (
+            &socket_handler::on_fail,
+            this,
+            &m_endpoint,
+            websocketpp::lib::placeholders::_1
+        ) );
+        con->set_close_handler ( websocketpp::lib::bind (
+            &socket_handler::on_close,
+            this,
+            &m_endpoint,
+            websocketpp::lib::placeholders::_1
+        ) );
+        con->set_message_handler ( websocketpp::lib::bind (
+            &socket_handler::message_handle,
+            this,
+            websocketpp::lib::placeholders::_1,
+            websocketpp::lib::placeholders::_2
+        ) );
+    }
+    catch ( int ex ) {
+
     }
 }
 

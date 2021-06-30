@@ -39,7 +39,7 @@ void BinaryPacket::send ( ) {
     }
 
     msgpack::sbuffer sbuf;
-    msgpack::pack ( sbuf, this );
+    msgpack::pack ( sbuf, *this );
 
     con->send ( sbuf.data ( ), sbuf.size ( ) );
 

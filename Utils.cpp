@@ -2,9 +2,28 @@
 #include "Utils.h"
 #include <chrono>
 #include <complex>
+#include <consoleapi.h>
+#include <consoleapi2.h>
 
 namespace Utils
 {
+    void CreateConsole ( ) {
+
+        AllocConsole ( );
+
+        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 0 ), "conin$", "r", ( _iobuf * ) __acrt_iob_func ( 0 ) );
+        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 1 ), "conout$", "w", ( _iobuf * ) __acrt_iob_func ( 1 ) );
+        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 2 ), "conout$", "w", ( _iobuf * ) __acrt_iob_func ( 2 ) );
+
+        SetConsoleTitleA ( "Mapper Image Console" );
+    }
+    void ReleaseConsole ( ) {
+        fclose ( ( _iobuf * ) __acrt_iob_func ( 0 ) );
+        fclose ( ( _iobuf * ) __acrt_iob_func ( 1 ) );
+        fclose ( ( _iobuf * ) __acrt_iob_func ( 2 ) );
+
+        FreeConsole ( );
+    }
 
     std::vector<unsigned char> OTPKey ( int ping ) {
         std::vector<unsigned char> key;
