@@ -10,12 +10,15 @@ enum PacketType {
 class BinaryPacket {
 public:
 	BinaryPacket ( websocketpp::connection_hdl client_handle );
+	BinaryPacket ( ) { };
+
+	
 	~BinaryPacket ( );
 
 private:
 
 	int type;
-	std::vector<unsigned char> buffer;
+	std::string buffer;
 	bool encrypted;
 
 
@@ -26,5 +29,16 @@ public:
 	void encrypt ( unsigned char* key );
 
 	MSGPACK_DEFINE ( type, buffer, encrypted );
+
+public: 
+	msgpack::object get ( );
+
+public:
+
+	PacketType getType ( ) {
+		return ( PacketType ) type;
+	}
+
+
 };
 

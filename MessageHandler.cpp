@@ -2,18 +2,20 @@
 #include "Handler.h"
 
 
-void socket_handler::on_open ( client * c, connection_hdl hdl ) {
+void socket_handler::on_open ( ) {
     status = CLIENT_STATUS::CONNECTED;
+    std::cout << "Connection oppened succesfully." << std::endl;
 
 }
 
-void socket_handler::on_close ( client * c, connection_hdl hdl ) {
+void socket_handler::on_close (  ) {
     status = CLIENT_STATUS::CLOSED;
 
+    std::cout << "Connection closed succesfully." << std::endl;
 }
-void socket_handler::on_fail ( client * c, connection_hdl hdl ) {
+void socket_handler::on_fail (  ) {
     status = CLIENT_STATUS::CLOSED;
-
+    std::cout << "Connection failed succesfully." << std::endl;
 }
 // Define a callback to handle incoming messages
 void socket_handler::message_handle ( websocketpp::connection_hdl, client::message_ptr msg ) {
@@ -25,7 +27,22 @@ void socket_handler::message_handle ( websocketpp::connection_hdl, client::messa
         if ( msg->get_opcode ( ) == websocketpp::frame::opcode::binary ) {
 
             try {
+                BinaryPacket packet;
 
+                msgpack::unpacked unpacked_msg;
+                msgpack::unpack ( unpacked_msg, msg->get_payload().data ( ), msg->get_payload ( ).size ( ) );
+                msgpack::object obj = unpacked_msg.get ( );
+                
+                obj.convert ( packet );
+
+                switch (  packet.getType() ) {
+                case PacketType::PACKET_KEY:
+
+                    break;
+
+                default:
+                    break;
+                }
             }
             catch ( int err ) {
 

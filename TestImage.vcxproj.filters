@@ -70,7 +70,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="libssl.lib" />
-    <Library Include="libcrypto.lib" />
+    <Library Include="..\ServerMapper\libcrypto.lib" />
+    <Library Include="..\ServerMapper\libssl.lib" />
+    <Library Include="..\ServerMapper\zlibstat.lib" />
   </ItemGroup>
 </Project>

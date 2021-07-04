@@ -36,11 +36,12 @@ enum CLIENT_STATUS {
 
 class socket_handler {
 //Handlers
+    
 public:
-    void on_open ( client * c, connection_hdl hdl );
-    void on_close ( client * c, connection_hdl hdl );
-    void on_fail ( client * c, connection_hdl hdl );
-
+    void on_open (  );
+    void on_close (  );
+    void on_fail ( );
+   
 public:
 
     void connect ( );
@@ -50,17 +51,17 @@ public:
     void message_handle ( websocketpp::connection_hdl, client::message_ptr msg );
 
 private:
-    websocketpp::connection_hdl m_hdl;
+    
     websocketpp::lib::shared_ptr<websocketpp::lib::thread> m_thread;
 public:
-    client m_endpoint;
+    client m_client;
+    websocketpp::connection_hdl m_hdl;
 private:
     CLIENT_STATUS status;
-    std::string uri = "localhost";
 
 };
 
 
-extern std::unique_ptr< socket_handler > handler;
+extern socket_handler* handler;
 
 

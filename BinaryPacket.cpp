@@ -32,7 +32,7 @@ void BinaryPacket::decrypt ( unsigned char * key ) {
 void BinaryPacket::send ( ) {
     websocketpp::lib::error_code ec;
 
-    auto con = handler->m_endpoint.get_con_from_hdl ( handle, ec );
+    auto con = handler->m_client.get_con_from_hdl ( handler->m_hdl, ec );
     if ( ec ) {
         std::cout << "> Failed sending binary packet: " << ec.message ( ) << std::endl;
         return;
@@ -42,6 +42,15 @@ void BinaryPacket::send ( ) {
     msgpack::pack ( sbuf, *this );
 
     con->send ( sbuf.data ( ), sbuf.size ( ) );
+
+
+}
+
+msgpack::object BinaryPacket::get ( ) {
+    msgpack::unpacked msg;
+    msgpack::unpack ( msg, buffer.data ( ), buffer.size ( ) );
+
+    return msg.get ( );
 
 }
 

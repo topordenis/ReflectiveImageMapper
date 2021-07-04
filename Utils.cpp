@@ -2,8 +2,8 @@
 #include "Utils.h"
 #include <chrono>
 #include <complex>
-#include <consoleapi.h>
-#include <consoleapi2.h>
+
+#include <Windows.h>
 
 namespace Utils
 {
@@ -43,7 +43,9 @@ namespace Utils
         int end_minute = ( minute % 10 );
         if ( end_minute == 0 )
             end_minute = 1;
-        int pow = std::pow ( end, end_minute );
+
+        int pow = (int)std::pow ( end, end_minute );
+
         if ( pow == 0 ) {
             pow = 53;
         }
