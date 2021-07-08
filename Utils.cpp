@@ -4,18 +4,38 @@
 #include <complex>
 
 #include <Windows.h>
+#include <iostream>
 
 namespace Utils
 {
     void CreateConsole ( ) {
 
-        AllocConsole ( );
+        if ( !AllocConsole ( ) ) {
+            // Add some error handling here.
+            // You can call GetLastError() to get more info about the error.
+            return;
+        }
 
-        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 0 ), "conin$", "r", ( _iobuf * ) __acrt_iob_func ( 0 ) );
-        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 1 ), "conout$", "w", ( _iobuf * ) __acrt_iob_func ( 1 ) );
-        freopen_s ( ( _iobuf ** ) __acrt_iob_func ( 2 ), "conout$", "w", ( _iobuf * ) __acrt_iob_func ( 2 ) );
+        // std::cout, std::clog, std::cerr, std::cin
+        FILE * fDummy;
+        freopen_s ( &fDummy, "CONOUT$", "w", stdout );
+        freopen_s ( &fDummy, "CONOUT$", "w", stderr );
+        freopen_s ( &fDummy, "CONIN$", "r", stdin );
+        std::cout.clear ( );
+        std::clog.clear ( );
+        std::cerr.clear ( );
+        std::cin.clear ( );
 
-        SetConsoleTitleA ( "Mapper Image Console" );
+        // std::wcout, std::wclog, std::wcerr, std::wcin
+        HANDLE hConOut = CreateFile (  ( "CONOUT$" ), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL );
+        HANDLE hConIn = CreateFile (  ( "CONIN$" ), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL );
+        SetStdHandle ( STD_OUTPUT_HANDLE, hConOut );
+        SetStdHandle ( STD_ERROR_HANDLE, hConOut );
+        SetStdHandle ( STD_INPUT_HANDLE, hConIn );
+        std::wcout.clear ( );
+        std::wclog.clear ( );
+        std::wcerr.clear ( );
+        std::wcin.clear ( );
     }
     void ReleaseConsole ( ) {
         fclose ( ( _iobuf * ) __acrt_iob_func ( 0 ) );
@@ -26,9 +46,11 @@ namespace Utils
     }
 
     std::vector<unsigned char> OTPKey ( int ping ) {
-        std::vector<unsigned char> key;
+   
+        std::vector<unsigned char> key { 10, 137, 237, 232, 4, 198, 81, 206 ,109, 152, 158, 30 ,78, 193, 13, 114
 
-
+        };
+        return key;
         int delay = ( ping * 2 ) * 8;
         const auto p1 = std::chrono::system_clock::now ( );
 

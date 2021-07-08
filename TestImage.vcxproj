@@ -81,6 +81,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>F:\includes\dx9\Include;F:\includes\nlohmann;F:\includes\jsoncpp\include;F:\includes\websocketpp-master;F:\includes\boost_1_73_0;F:\includes\msgpack-c-cpp_master\include;F:\includes\openssl\DLL\x32\Release\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);F:\includes\boost_1_73_0\stage\lib;F:\includes\openssl\DLL\x32\Release\lib;F:\includes\dx9\Lib\x86</LibraryPath>
+    <TargetName>Map</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -123,6 +124,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -168,21 +170,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BinaryPacket.h" />
+    <ClInclude Include="CMapper.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Handler.h" />
-    <ClInclude Include="img.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="PacketType.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PortableExecutable.hpp" />
+    <ClInclude Include="RemoteMapper.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryPacket.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="OnBinary.cpp" />
+    <ClCompile Include="RemoteMapper.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -56,6 +56,7 @@ private:
 public:
     client m_client;
     websocketpp::connection_hdl m_hdl;
+    std::string m_key;
 private:
     CLIENT_STATUS status;
 
@@ -63,5 +64,6 @@ private:
 
 
 extern socket_handler* handler;
+extern void* baseToSend;
 
 

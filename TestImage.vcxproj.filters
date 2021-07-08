@@ -19,6 +19,18 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{04c48d5b-c1ad-4416-90a4-b9ed0fa47f92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Image">
+      <UniqueIdentifier>{9bc33ec5-be0b-4ac7-a863-1224175621e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InternalMapper">
+      <UniqueIdentifier>{e68c20f8-c403-4416-a0fd-3e676ad5a1ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InternalMapper\Remote">
+      <UniqueIdentifier>{dc1a3391-a751-460f-8662-2af3a0de9b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMapper">
+      <UniqueIdentifier>{704fc7a9-7e38-4c53-a603-ee2cbcfbd36c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,51 +39,66 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="img.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryPacket.h">
-      <Filter>Socket</Filter>
-    </ClInclude>
-    <ClInclude Include="Handler.h">
-      <Filter>Socket</Filter>
-    </ClInclude>
-    <ClInclude Include="PacketType.h">
-      <Filter>Socket</Filter>
-    </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>InternalMapper</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoteMapper.h">
+      <Filter>InternalMapper\Remote</Filter>
+    </ClInclude>
+    <ClInclude Include="PortableExecutable.hpp">
+      <Filter>CMapper</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketType.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryPacket.cpp">
-      <Filter>Socket</Filter>
-    </ClCompile>
-    <ClCompile Include="Handler.cpp">
-      <Filter>Socket</Filter>
-    </ClCompile>
-    <ClCompile Include="OnBinary.cpp">
-      <Filter>Socket</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageHandler.cpp">
-      <Filter>Socket</Filter>
-    </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>InternalMapper</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoteMapper.cpp">
+      <Filter>InternalMapper\Remote</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OnBinary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\ServerMapper\libcrypto.lib" />
     <Library Include="..\ServerMapper\libssl.lib" />
     <Library Include="..\ServerMapper\zlibstat.lib" />
+    <Library Include="..\ServerMapper\libcrypto.lib" />
   </ItemGroup>
 </Project>

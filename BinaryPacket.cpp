@@ -14,18 +14,43 @@ BinaryPacket::~BinaryPacket ( ) {
 
 void BinaryPacket::encrypt ( unsigned char * key ) {
 
-    AES_KEY enc_key;
-    AES_set_encrypt_key ( key, 32, &enc_key );
-    AES_cbc_encrypt ( ( unsigned char * ) this->buffer.data(), ( unsigned char * ) this->buffer.data ( ), this->buffer.size(), &enc_key, Utils::OTPKey ( 30 ).data ( ), AES_ENCRYPT );
+    original_size = this->buffer.size ( );
+
+    std::string enc_out; enc_out.resize ( original_size + 16 - ( original_size % 16 ) );
+
+
+    unsigned char local_vector [ AES_BLOCK_SIZE ];
+    memcpy ( local_vector, Utils::OTPKey ( 30 ).data ( ), AES_BLOCK_SIZE );
+
+    AES_KEY dec_key;
+
+
+    AES_set_encrypt_key ( key, 256, &dec_key );
+    AES_cbc_encrypt ( ( unsigned char * ) this->buffer.data ( ), ( unsigned char * ) enc_out.data ( ), enc_out.size ( ), &dec_key, local_vector, AES_ENCRYPT );
+
+
 
     this->encrypted = true;
+
 }
 
 void BinaryPacket::decrypt ( unsigned char * key ) {
 
-    AES_KEY enc_key;
-    AES_set_decrypt_key ( key, 32, &enc_key );
-    AES_cbc_encrypt ( ( unsigned char * ) this->buffer.data ( ), ( unsigned char * ) this->buffer.data ( ), this->buffer.size ( ), &enc_key, Utils::OTPKey(30).data(), AES_DECRYPT );
+
+    std::string dec_out;
+    dec_out.resize ( original_size );
+
+
+    unsigned char local_vector [ AES_BLOCK_SIZE ];
+    memcpy ( local_vector, Utils::OTPKey ( 00 ).data ( ), AES_BLOCK_SIZE );
+
+    AES_KEY dec_key;
+
+
+    AES_set_decrypt_key ( key, 256, &dec_key );
+    AES_cbc_encrypt ( ( unsigned char * ) this->buffer.data ( ), ( unsigned char * ) dec_out.data ( ), original_size, &dec_key, local_vector, AES_DECRYPT );
+
+    this->buffer = dec_out;
 
     this->encrypted = false;
 }
@@ -37,6 +62,7 @@ void BinaryPacket::send ( ) {
         std::cout << "> Failed sending binary packet: " << ec.message ( ) << std::endl;
         return;
     }
+
 
     msgpack::sbuffer sbuf;
     msgpack::pack ( sbuf, *this );
@@ -53,5 +79,6 @@ msgpack::object BinaryPacket::get ( ) {
     return msg.get ( );
 
 }
+
 
 

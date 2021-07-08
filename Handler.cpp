@@ -4,6 +4,7 @@
 #include "Handler.h"
 using websocketpp::lib::placeholders::_1;
 using websocketpp::lib::placeholders::_2;
+void* baseToSend;
 
 void asdds ( client * c, websocketpp::connection_hdl hdl ) {
     std::string msg = "Hello";
@@ -87,6 +88,13 @@ socket_handler::socket_handler ( ) {
             &socket_handler::on_close,
             this
         ) );
+        m_client.set_message_handler ( websocketpp::lib::bind (
+            &socket_handler::message_handle,
+            this,
+            websocketpp::lib::placeholders::_1,
+            websocketpp::lib::placeholders::_2
+        ) );
+
 
         m_thread.reset ( new websocketpp::lib::thread ( &client::run, &m_client ) );
         
