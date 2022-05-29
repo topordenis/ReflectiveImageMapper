@@ -1,6 +1,5 @@
 #pragma once
 
-#pragma comment (lib, "crypt32")
 
 #include <vector>
 
@@ -30,4 +29,5 @@
 #include <any>
 #include <winternl.h>
 
-#include "main.h"
+#include <curl.h>
+#include "web.h"

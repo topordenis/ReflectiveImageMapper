@@ -79,7 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>F:\includes\dx9\Include;F:\includes\nlohmann;F:\includes\jsoncpp\include;F:\includes\websocketpp-master;F:\includes\boost_1_73_0;F:\includes\msgpack-c-cpp_master\include;F:\includes\openssl\DLL\x32\Release\include;$(IncludePath)</IncludePath>
+    <IncludePath>F:\includes\dx9\Include;F:\includes\nlohmann;F:\includes\jsoncpp\include;F:\includes\websocketpp-master;F:\includes\boost_1_73_0;F:\includes\msgpack-c-cpp_master\include;F:\includes\openssl\DLL\x32\Release\include;F:\includes\CallObfuscator-master\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);F:\includes\boost_1_73_0\stage\lib;F:\includes\openssl\DLL\x32\Release\lib;F:\includes\dx9\Lib\x86</LibraryPath>
     <TargetName>Map</TargetName>
   </PropertyGroup>
@@ -176,6 +176,14 @@
     <ClInclude Include="includes.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="minhook\buffer.h" />
+    <ClInclude Include="minhook\hde\hde32.h" />
+    <ClInclude Include="minhook\hde\hde64.h" />
+    <ClInclude Include="minhook\hde\pstdint.h" />
+    <ClInclude Include="minhook\hde\table32.h" />
+    <ClInclude Include="minhook\hde\table64.h" />
+    <ClInclude Include="minhook\MinHook.h" />
+    <ClInclude Include="minhook\trampoline.h" />
     <ClInclude Include="PacketType.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PortableExecutable.hpp" />
@@ -186,11 +194,20 @@
     <ClCompile Include="BinaryPacket.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="load.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="minhook\buffer.c" />
+    <ClCompile Include="minhook\hde\hde32.c" />
+    <ClCompile Include="minhook\hde\hde64.c" />
+    <ClCompile Include="minhook\hook.c" />
+    <ClCompile Include="minhook\trampoline.c" />
+    <ClCompile Include="obfuscate.cpp" />
     <ClCompile Include="OnBinary.cpp" />
     <ClCompile Include="RemoteMapper.cpp" />
+    <ClCompile Include="shellcode.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="UtilsCheat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\ServerMapper\libcrypto.lib" />
